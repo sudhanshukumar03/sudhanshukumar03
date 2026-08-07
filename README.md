@@ -128,7 +128,7 @@ A self-built personal OS that fuses a **Notion-style knowledge layer** with a **
 
 <p align="center">
   <a href="https://leetcode.com/u/sudhansh_30/">
-    <img src="https://leetcard.jacoblin.cool/sudhansh_30?theme=dark&font=baloo_2&ext=activity" alt="LeetCode Stats"/>
+    <img src="https://leetcard.jacoblin.cool/sudhansh_30?theme=dark&font=baloo_2" alt="LeetCode Stats"/>
   </a>
 </p>
 
@@ -137,12 +137,12 @@ A self-built personal OS that fuses a **Notion-style knowledge layer** with a **
 ### 📊 GitHub Stats
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=sudhanshukumar03&show_icons=true&theme=radical&hide_border=true&count_private=true" alt="Sudhanshu's GitHub Stats" />
+  <img height="165" src="https://github-readme-stats.vercel.app/api?username=sudhanshukumar03&show_icons=true&theme=radical&hide_border=true&cache_seconds=1800" alt="Sudhanshu's GitHub Stats" />
   <img height="165" src="https://streak-stats.demolab.com/?user=sudhanshukumar03&theme=radical&hide_border=true" alt="Sudhanshu's GitHub Streak" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=sudhanshukumar03&layout=compact&theme=radical&hide_border=true&langs_count=8" alt="Top Languages" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=sudhanshukumar03&layout=compact&theme=radical&hide_border=true&langs_count=6&cache_seconds=1800" alt="Top Languages" />
 </p>
 
 ---
@@ -150,7 +150,7 @@ A self-built personal OS that fuses a **Notion-style knowledge layer** with a **
 ### 🐍 Contribution Snake
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/sudhanshukumar03/sudhanshukumar03/output/github-contribution-grid-snake.svg" alt="snake animation"/>
+  <img src="https://raw.githubusercontent.com/sudhanshukumar03/sudhanshukumar03/output/github-contribution-grid-snake-dark.svg" alt="snake animation"/>
 </p>
 
 > 💡 **Note:** The snake animation requires a one-time GitHub Actions setup in your profile repo (`sudhanshukumar03/sudhanshukumar03`) — instructions below.
