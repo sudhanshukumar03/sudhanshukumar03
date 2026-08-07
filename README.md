@@ -128,7 +128,7 @@ A self-built personal OS that fuses a **Notion-style knowledge layer** with a **
 
 <p align="center">
   <a href="https://leetcode.com/u/sudhansh_30/">
-    <img src="https://leetcode-stats-two-flax.vercel.app/api?username=sudhansh_30&theme=dark" alt="LeetCode Stats"/>
+    <img src="https://leetcard.jacoblin.cool/sudhansh_30?theme=dark&font=baloo_2&ext=activity" alt="LeetCode Stats"/>
   </a>
 </p>
 
@@ -137,12 +137,12 @@ A self-built personal OS that fuses a **Notion-style knowledge layer** with a **
 ### 📊 GitHub Stats
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=sudhanshukumar03&show_icons=true&theme=radical&hide_border=true&count_private=true" />
-  <img height="165" src="https://github-readme-streak-stats.herokuapp.com/?user=sudhanshukumar03&theme=radical&hide_border=true" />
+  <img height="165" src="https://github-readme-stats.vercel.app/api?username=sudhanshukumar03&show_icons=true&theme=radical&hide_border=true&count_private=true" alt="Sudhanshu's GitHub Stats" />
+  <img height="165" src="https://streak-stats.demolab.com/?user=sudhanshukumar03&theme=radical&hide_border=true" alt="Sudhanshu's GitHub Streak" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=sudhanshukumar03&layout=compact&theme=radical&hide_border=true" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=sudhanshukumar03&layout=compact&theme=radical&hide_border=true&langs_count=8" alt="Top Languages" />
 </p>
 
 ---
@@ -161,19 +161,4 @@ A self-built personal OS that fuses a **Notion-style knowledge layer** with a **
 
 ⭐️ From [sudhanshukumar03](https://github.com/sudhanshukumar03) — thanks for stopping by!
 
-</div>## Hi there 👋
-
-<!--
-**sudhanshukumar03/sudhanshukumar03** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+</div>
