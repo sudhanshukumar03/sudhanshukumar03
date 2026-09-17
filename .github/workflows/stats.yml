@@ -8,6 +8,11 @@ on:
     branches:
       - main
 
+# Prevent multiple workflows from running simultaneously
+concurrency:
+  group: 3d-contribution-calendar
+  cancel-in-progress: false
+
 permissions:
   contents: write
   actions: read
@@ -43,28 +48,47 @@ jobs:
             echo "✓ No changes to commit"
           else
             echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "📝 Changes detected:"
             git diff --stat
           fi
 
-      - name: Commit and push changes
+      - name: Pull latest changes from remote
+        if: steps.verify_changes.outputs.has_changes == 'true'
+        run: |
+          echo "🔄 Pulling latest changes from remote..."
+          git pull --rebase origin main || {
+            echo "⚠ Rebase conflict detected, attempting resolution..."
+            git rebase --abort
+            git pull origin main --no-rebase
+          }
+
+      - name: Commit changes
         if: steps.verify_changes.outputs.has_changes == 'true'
         run: |
           git add -A
           git commit -m "chore: update 3D contribution calendar [skip ci]" \
             -m "Generated at $(date -u +'%Y-%m-%d %H:%M:%S UTC')" \
-            --allow-empty
-          
-          # Retry logic for push
-          for i in {1..3}; do
-            if git push; then
-              echo "✓ Successfully pushed changes"
+            --allow-empty || echo "⚠ No new changes to commit"
+
+      - name: Push with retry logic
+        if: steps.verify_changes.outputs.has_changes == 'true'
+        run: |
+          for i in {1..5}; do
+            echo "📤 Push attempt $i/5..."
+            
+            if git push origin main; then
+              echo "✅ Successfully pushed changes"
               exit 0
             else
-              echo "⚠ Push attempt $i failed, retrying..."
-              sleep $((i * 5))
+              if [ $i -lt 5 ]; then
+                echo "⚠ Push failed, pulling latest and retrying..."
+                git pull --rebase origin main || git pull origin main --no-rebase
+                sleep $((i * 2))
+              fi
             fi
           done
-          echo "✗ Failed to push after 3 attempts"
+          
+          echo "❌ Failed to push after 5 attempts"
           exit 1
 
       - name: Workflow summary
@@ -72,16 +96,25 @@ jobs:
         run: |
           echo "## 3D Contribution Calendar Update" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Workflow completed successfully" >> $GITHUB_STEP_SUMMARY
-          echo "📅 Generated at: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
-          echo "👤 Username: ${{ github.repository_owner }}" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.verify_changes.outputs.has_changes }}" == "true" ]; then
+            echo "✅ **Changes pushed successfully**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ **No changes detected**" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Time**: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "- **Username**: ${{ github.repository_owner }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch**: main" >> $GITHUB_STEP_SUMMARY
 
       - name: Handle failure
         if: failure()
         run: |
           echo "## ⚠️ 3D Contribution Calendar Update Failed" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Issue**: The workflow encountered an error while generating or pushing the 3D contribution calendar." >> $GITHUB_STEP_SUMMARY
+          echo "**Issue**: Git push failed after multiple retries" >> $GITHUB_STEP_SUMMARY
           echo "**Time**: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "View logs for more details." >> $GITHUB_STEP_SUMMARY
+          echo "**Troubleshooting**:" >> $GITHUB_STEP_SUMMARY
+          echo "- Check branch protection rules" >> $GITHUB_STEP_SUMMARY
+          echo "- Verify token permissions" >> $GITHUB_STEP_SUMMARY
+          echo "- View logs for detailed error" >> $GITHUB_STEP_SUMMARY
