@@ -56,10 +56,10 @@ jobs:
         if: steps.verify_changes.outputs.has_changes == 'true'
         run: |
           echo "🔄 Pulling latest changes from remote..."
-          git pull --rebase origin main || {
+          git pull --rebase --autostash origin main || {
             echo "⚠ Rebase conflict detected, attempting resolution..."
-            git rebase --abort
-            git pull origin main --no-rebase
+            git rebase --abort || true
+            git pull --autostash origin main --no-rebase
           }
 
       - name: Commit changes
